@@ -1,0 +1,27 @@
+{
+    "name": "smnkgv/ann",
+    "description": "Simple PHP7 artificial neural network implementation",
+    "keywords": [
+        "ann",
+        "neural network",
+        "artificial neural network",
+        "php",
+        "php7"
+    ],
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Semenuk Gleb",
+            "email": "smnk.gv@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "codeception/codeception": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ann\\lib\\": "lib/",
+            "Ann\\tests\\": "tests/"
+        }
+    }
+}
