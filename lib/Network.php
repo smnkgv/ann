@@ -22,7 +22,7 @@ class Network
 
     public function setInput(array $input)
     {
-        foreach ($this->neurons as &$neuron) {
+        foreach ($this->neurons as $neuron) {
             $neuron->setInput($input);
         }
 
@@ -32,7 +32,7 @@ class Network
     public function getResults(): array
     {
         $results = [];
-        foreach ($this->neurons as $taskName => &$neuron) {
+        foreach ($this->neurons as $taskName => $neuron) {
             $results[$taskName] = $neuron->getResult();
         }
 
@@ -51,7 +51,7 @@ class Network
 
     public function saveWeights()
     {
-        foreach ($this->neurons as &$neuron) {
+        foreach ($this->neurons as $neuron) {
             $neuron->saveWeights();
         }
 
