@@ -9,72 +9,108 @@ vendor/bin/codecept run unit tests/unit/lib/NetworkTest.php --debug
 ```
 ###Result:
 ```
-Unit Tests (1) ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Unit Tests (1) ----------------------------------------------------------------------------------------------------
 Modules: Asserts, \Helper\Unit
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- NetworkTest: Network
-  image h looks like sans_h
-  image S looks like sans_S
-  image Q looks like sans_Q
-  image T looks like sans_T
-  image 3 looks like sans_3
-  image 9 looks like sans_9
-  image r looks like sans_r
-  image M looks like sans_M
-  image y looks like sans_y
-  image o looks like sans_o
-  image j looks like sans_j
-  image W looks like sans_W
-  image 5 looks like sans_5
-  image C looks like sans_C
-  image X looks like sans_X
-  image m looks like sans_m
-  image J looks like sans_J
-  image 6 looks like sans_6
-  image R looks like sans_R
-  image k looks like sans_k
-  image z looks like sans_z
-  image x looks like sans_x
-  image I looks like sans_I
-  image q looks like sans_q
-  image p looks like sans_p
-  image d looks like sans_d
-  image w looks like sans_w
-  image b looks like sans_b
-  image s looks like sans_s
-  image E looks like sans_E
-  image A looks like sans_A
-  image c looks like sans_c
-  image P looks like sans_P
-  image 7 looks like sans_7
-  image v looks like sans_v
-  image U looks like sans_U
-  image i looks like sans_i
-  image a looks like sans_a
-  image 0 looks like sans_0
-  image O looks like sans_O
-  image V looks like sans_V
-  image D looks like sans_D
-  image Z looks like sans_Z
-  image K looks like sans_K
-  image 1 looks like sans_1
-  image g looks like sans_g
-  image f looks like sans_f
-  image 2 looks like sans_2
-  image N looks like sans_N
-  image Y looks like sans_Y
-  image H looks like sans_H
-  image e looks like sans_e
-  image F looks like sans_F
-  image t looks like sans_t
-  image 4 looks like sans_4
-  image 8 looks like sans_8
-  image u looks like sans_u
-  image G looks like sans_G
-  image L looks like sans_L
-  image B looks like sans_B
-  image l looks like sans_l
-  image n looks like sans_n
+-------------------------------------------------------------------------------------------------------------------
+- NetworkTest: Image recognition network
+  Train iteration: 1
+  Train iteration: 2
+  Train iteration: 3
+  Train iteration: 4
+  Train iteration: 5
+  Train iteration: 6
+  Train iteration: 7
+  Train iteration: 8
+  Train iteration: 9
+  Train iteration: 10
+  Train iteration: 11
+  Train iteration: 12
+  Train iteration: 13
+  Train iteration: 14
+  Train iteration: 15
+  Train iteration: 16
+  Train iteration: 17
+  Train iteration: 18
+  Train iteration: 19
+  Train iteration: 20
+  Train iteration: 21
+  Train iteration: 22
+  Train iteration: 23
+  Train iteration: 24
+  Train iteration: 25
+  Train iteration: 26
+  Train iteration: 27
+  Train iteration: 28
+  Train iteration: 29
+  Train iteration: 30
+  real / recognized: 5 / 5
+  real / recognized: Z / Z
+  real / recognized: d / d
+  real / recognized: X / X
+  real / recognized: u / u
+  real / recognized: R / R
+  real / recognized: l / l
+  real / recognized: 6 / 6
+  real / recognized: 9 / 9
+  real / recognized: N / N
+  real / recognized: C / C
+  real / recognized: b / b
+  real / recognized: 0 / 0
+  real / recognized: k / k
+  real / recognized: A / A
+  real / recognized: f / f
+  real / recognized: v / v
+  real / recognized: T / T
+  real / recognized: a / a
+  real / recognized: m / m
+  real / recognized: H / H
+  real / recognized: P / P
+  real / recognized: E / E
+  real / recognized: O / O
+  real / recognized: h / h
+  real / recognized: 2 / 2
+  real / recognized: g / g
+  real / recognized: q / q
+  real / recognized: 1 / 1
+  real / recognized: p / p
+  real / recognized: B / B
+  real / recognized: y / y
+  real / recognized: e / e
+  real / recognized: W / W
+  real / recognized: i / i
+  real / recognized: c / c
+  real / recognized: V / V
+  real / recognized: 7 / 7
+  real / recognized: S / S
+  real / recognized: D / D
+  real / recognized: z / z
+  real / recognized: I / I
+  real / recognized: Q / Q
+  real / recognized: U / U
+  real / recognized: s / s
+  real / recognized: r / r
+  real / recognized: j / j
+  real / recognized: L / L
+  real / recognized: K / K
+  real / recognized: x / x
+  real / recognized: 4 / 4
+  real / recognized: M / M
+  real / recognized: 8 / 8
+  real / recognized: n / n
+  real / recognized: w / w
+  real / recognized: F / F
+  real / recognized: 3 / 3
+  real / recognized: J / J
+  real / recognized: G / G
+  real / recognized: t / t
+  real / recognized: o / o
+  real / recognized: Y / Y
   Accuracy: 100%
-✔ NetworkTest: Network (53.01s)
+✔ NetworkTest: Image recognition network (65.78s)
+-------------------------------------------------------------------------------------------------------------------
+
+
+Time: 1.09 minutes, Memory: 34.00MB
+
+OK (1 test, 2 assertions)
 ```

@@ -106,7 +106,7 @@ class NetworkTest extends \Codeception\Test\Unit
 
     public function testImageRecognitionNetwork()
     {
-//        $this->trainImageRecognitionNetwork();
+        $this->trainImageRecognitionNetwork(); //this can be disabled right after the first run
 
         $lettersArray = str_split(self::LETTERS);
         $imagesGrayInPercents = $this->getImagesGrayInPercents($lettersArray, true);
@@ -123,7 +123,7 @@ class NetworkTest extends \Codeception\Test\Unit
             $resultsFilteredValues = array_keys($resultsFiltered);
             $implodeResults = implode(', ', $resultsFilteredValues);
 
-            Debug::debug("image $letter looks like $implodeResults");
+            Debug::debug("real / recognized: $letter / $implodeResults");
 
             if ($letter == $implodeResults) {
                 $goodRecognitions++;
