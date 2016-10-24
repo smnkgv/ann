@@ -13,13 +13,6 @@ class NetworkTest extends \Codeception\Test\Unit
     protected $tester;
     const LETTERS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    public function _before()
-    {
-        parent::_before();
-
-        $this->trainNetwork(); //you should comment this line after first run
-    }
-
     private function createTestImage(string $string)
     {
         $im = imagecreatetruecolor(50, 50);
@@ -61,14 +54,13 @@ class NetworkTest extends \Codeception\Test\Unit
         imagepng($image, __DIR__ . "/../../_output/$name.png");
     }
 
-    private function trainNetwork()
+    private function getImagesGrayInPercents(array $letters, bool $shuffle = false): array
     {
-        $lettersArray = str_split(self::LETTERS);
-        $sansLettersArray = array_map(function ($one) {
-            $one = "sans_$one";
-            return $one;
-        }, $lettersArray);
-        $imagesGrayInPercents = array_reduce($lettersArray, function ($memo, $letter) {
+        if ($shuffle) {
+            shuffle($letters);
+        }
+
+        $imagesGrayInPercents = array_reduce($letters, function ($memo, $letter) {
             $image = $this->createTestImage($letter);
             $this->savePngImage($image, $letter); //not really needed
             $imageGrayPercents = $this->getImageGrayPercents($image);
@@ -77,15 +69,26 @@ class NetworkTest extends \Codeception\Test\Unit
             return $memo;
         }, []);
 
-        $network = new Network($sansLettersArray, 50, 50);
+        return $imagesGrayInPercents;
+    }
+
+    private function trainImageRecognitionNetwork()
+    {
+        $lettersArray = str_split(self::LETTERS);
+        $imagesGrayInPercents = $this->getImagesGrayInPercents($lettersArray);
+
+        $network = new Network('sans-recognition', $lettersArray, 50, 50);
 
         for ($i = 0; $i < 30; $i++) {
+            $iteration = $i + 1;
+            Debug::debug("Train iteration: $iteration");
+
             foreach ($imagesGrayInPercents as $letter => $oneImage) {
                 $network->setInput($oneImage);
                 $results = $network->getResults();
 
                 foreach ($results as $taskName => $result) {
-                    if ($taskName === "sans_$letter") {
+                    if ($taskName === $letter) {
                         if ($result === 0) {
                             $network->getNeuron($taskName)->isFalseFalse();
                         }
@@ -101,23 +104,14 @@ class NetworkTest extends \Codeception\Test\Unit
         $network->saveWeights();
     }
 
-    public function testNetwork()
+    public function testImageRecognitionNetwork()
     {
+//        $this->trainImageRecognitionNetwork();
+
         $lettersArray = str_split(self::LETTERS);
-        shuffle($lettersArray);
-        $sansLettersArray = array_map(function ($one) {
-            $one = "sans_$one";
-            return $one;
-        }, $lettersArray);
-        $imagesGrayInPercents = array_reduce($lettersArray, function ($memo, $letter) {
-            $image = $this->createTestImage($letter);
-            $imageGrayPercents = $this->getImageGrayPercents($image);
-            $memo[$letter] = $imageGrayPercents;
+        $imagesGrayInPercents = $this->getImagesGrayInPercents($lettersArray, true);
 
-            return $memo;
-        }, []);
-
-        $network = new Network($sansLettersArray, 50, 50);
+        $network = new Network('sans-recognition', $lettersArray, 50, 50);
 
         $goodRecognitions = 0;
         foreach ($imagesGrayInPercents as $letter => $oneImage) {
@@ -131,7 +125,7 @@ class NetworkTest extends \Codeception\Test\Unit
 
             Debug::debug("image $letter looks like $implodeResults");
 
-            if ("sans_$letter" == $implodeResults) {
+            if ($letter == $implodeResults) {
                 $goodRecognitions++;
             }
         }
@@ -140,7 +134,6 @@ class NetworkTest extends \Codeception\Test\Unit
 
         Debug::debug("Accuracy: $accuracy%");
 
-        $this->assertTrue($accuracy >= 95);
+        $this->assertGreaterThanOrEqual(95, $accuracy);
     }
-
 }

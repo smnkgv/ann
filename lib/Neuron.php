@@ -10,21 +10,22 @@ namespace Ann\lib;
 
 class Neuron
 {
-    private $taskName;
     private $input = [];
     private $limit;
     private $weights = [];
     private $sizeY;
     private $sizeX;
 
-    public function __construct(string $taskName, int $sizeY, int $sizeX, int $limit = null)
+    public function __construct(array &$weights, int $sizeY, int $sizeX, int $limit = null)
     {
+        if (empty($weights)) {
+            throw new \InvalidArgumentException('Weights are empty');
+        }
+
         $this->sizeY = $sizeY;
         $this->sizeX = $sizeX;
         $this->limit = $limit ?? 10;
-        $this->taskName = $taskName;
-        $this->weightsFile = __DIR__ . "/../weights/$taskName.txt";
-        $this->weights = $this->loadWeights();
+        $this->weights = &$weights;
     }
 
     public function setInput(array $input)
@@ -61,48 +62,7 @@ class Neuron
         }
     }
 
-    public function saveWeights()
-    {
-        if (empty($this->weights)) {
-            throw new \Exception('Nothing to save');
-        }
-
-        $serializedWeights = serialize($this->weights);
-        file_put_contents($this->weightsFile, $serializedWeights);
-    }
-
-    private function loadWeights(): array
-    {
-        if (!file_exists($this->weightsFile)) {
-            $result = $this->initWeights($this->weightsFile);
-
-            if ($result === false) {
-                throw new \Exception('Weights file cannot be created');
-            }
-        }
-
-        $weightsString = file_get_contents($this->weightsFile);
-        $weights = unserialize($weightsString);
-
-        return $weights;
-    }
-
-    private function initWeights(string $weightsFile)
-    {
-        $values = [];
-        for ($y = 0; $y <= $this->sizeY - 1; $y++) {
-            for ($x = 0; $x <= $this->sizeX - 1; $x++) {
-                $values[$y][$x] = 0;
-            }
-        }
-
-        $valuesSerialized = serialize($values);
-        $result = file_put_contents($weightsFile, $valuesSerialized);
-
-        return $result;
-    }
-
-    private function multiplyInputByWeights()
+    private function multiplyInputByWeights(): array
     {
         $result = [];
         for ($y = 0; $y <= $this->sizeY - 1; $y++) {
