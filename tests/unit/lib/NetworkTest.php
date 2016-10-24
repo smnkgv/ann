@@ -1,8 +1,8 @@
 <?php
 
-namespace Ann\tests;
+namespace smnkgv\ann\tests;
 
-use Ann\lib\Network;
+use smnkgv\ann\lib\Network;
 use Codeception\Util\Debug;
 
 class NetworkTest extends \Codeception\Test\Unit
@@ -106,7 +106,7 @@ class NetworkTest extends \Codeception\Test\Unit
 
     public function testImageRecognitionNetwork()
     {
-        $this->trainImageRecognitionNetwork(); //this can be disabled right after the first run
+//        $this->trainImageRecognitionNetwork(); //this can be disabled right after the first run
 
         $lettersArray = str_split(self::LETTERS);
         $imagesGrayInPercents = $this->getImagesGrayInPercents($lettersArray, true);

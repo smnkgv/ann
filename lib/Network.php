@@ -6,7 +6,7 @@
  * Time: 8:54 PM
  */
 
-namespace Ann\lib;
+namespace smnkgv\ann\lib;
 
 
 class Network

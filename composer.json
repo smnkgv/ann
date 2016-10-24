@@ -23,8 +23,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Ann\\lib\\": "lib/",
-            "Ann\\tests\\": "tests/"
+            "smnkgv\\ann\\lib\\": "lib/",
+            "smnkgv\\ann\\tests\\": "tests/"
         }
     }
 }

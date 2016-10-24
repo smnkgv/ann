@@ -6,7 +6,7 @@
  * Time: 2:24 AM
  */
 
-namespace Ann\lib;
+namespace smnkgv\ann\lib;
 
 class Neuron
 {
