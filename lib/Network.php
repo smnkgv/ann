@@ -39,7 +39,7 @@ class Network
             throw new \Exception('Nothing to save');
         }
 
-        $serializedWeights = serialize($this->weights);
+        $serializedWeights = json_encode($this->weights);
         file_put_contents($this->weightsFile, $serializedWeights);
     }
 
@@ -54,7 +54,7 @@ class Network
         }
 
         $weightsString = file_get_contents($this->weightsFile);
-        $weights = unserialize($weightsString);
+        $weights = json_decode($weightsString, true);
 
         return $weights;
     }
@@ -73,7 +73,7 @@ class Network
             $result["$neuronName"] = $values;
         }
 
-        $resultSerialized = serialize($result);
+        $resultSerialized = json_encode($result);
         $result = file_put_contents($this->weightsFile, $resultSerialized);
 
         return $result;

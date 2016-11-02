@@ -2,7 +2,7 @@
 
 namespace smnkgv\ann\tests;
 
-use Smnkgv\Ann\lib\Network;
+use smnkgv\ann\lib\Network;
 use Codeception\Util\Debug;
 
 class NetworkTest extends \Codeception\Test\Unit
@@ -79,15 +79,18 @@ class NetworkTest extends \Codeception\Test\Unit
 
         $network = new Network('sans-recognition', $lettersArray, 50, 50);
 
+        $iterations = 0;
         for ($i = 0; $i < 30; $i++) {
-            $iteration = $i + 1;
-            Debug::debug("Train iteration: $iteration");
-
             foreach ($imagesGrayInPercents as $letter => $oneImage) {
                 $network->setInput($oneImage);
                 $results = $network->getResults();
 
                 foreach ($results as $taskName => $result) {
+                    $iterations++;
+                    if ($iterations % 1000 === 0) {
+                        Debug::debug("Train iteration: $iterations");
+                    }
+
                     if ($taskName === $letter) {
                         if ($result === 0) {
                             $network->getNeuron($taskName)->isFalseFalse();
@@ -100,6 +103,8 @@ class NetworkTest extends \Codeception\Test\Unit
                 }
             }
         }
+
+        Debug::debug("Total iterations: $iterations");
 
         $network->saveWeights();
     }
