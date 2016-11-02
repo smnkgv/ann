@@ -1,7 +1,7 @@
 ##Simple PHP7 artificial neural network
 
-Simple ANN implementation (single-layer perceptron).
-Developed to recognize images with letters (there are examples with sans font).
+Simple ANN implementation (single-layer only for now).
+Include test example to recognize images with letters in open-sans font.
 
 ###Usage:
 ```
@@ -13,36 +13,17 @@ Unit Tests (1) -----------------------------------------------------------------
 Modules: Asserts, \Helper\Unit
 -------------------------------------------------------------------------------------------------------------------
 - NetworkTest: Image recognition network
-  Train iteration: 1
-  Train iteration: 2
-  Train iteration: 3
-  Train iteration: 4
-  Train iteration: 5
-  Train iteration: 6
-  Train iteration: 7
-  Train iteration: 8
-  Train iteration: 9
-  Train iteration: 10
-  Train iteration: 11
-  Train iteration: 12
-  Train iteration: 13
-  Train iteration: 14
-  Train iteration: 15
-  Train iteration: 16
-  Train iteration: 17
-  Train iteration: 18
-  Train iteration: 19
-  Train iteration: 20
-  Train iteration: 21
-  Train iteration: 22
-  Train iteration: 23
-  Train iteration: 24
-  Train iteration: 25
-  Train iteration: 26
-  Train iteration: 27
-  Train iteration: 28
-  Train iteration: 29
-  Train iteration: 30
+  Train iteration: 1000
+  Train iteration: 2000
+  Train iteration: 3000
+  Train iteration: 4000
+  ...
+  Train iteration: 111000
+  Train iteration: 112000
+  Train iteration: 113000
+  Train iteration: 114000
+  Train iteration: 115000
+  Total iterations: 115320
   real / recognized: 5 / 5
   real / recognized: Z / Z
   real / recognized: d / d
