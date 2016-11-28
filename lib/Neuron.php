@@ -22,6 +22,14 @@ class Neuron
             throw new \InvalidArgumentException('Weights are empty');
         }
 
+        if ($sizeX < 1 || $sizeY < 1) {
+            throw new \Exception('Incorrect input size');
+        }
+
+        if ($limit && $limit < 1) {
+            throw new \Exception('Incorrect limit');
+        }
+
         $this->sizeY = $sizeY;
         $this->sizeX = $sizeX;
         $this->limit = $limit ?? 10;

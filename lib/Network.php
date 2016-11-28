@@ -11,25 +11,31 @@ namespace smnkgv\ann\lib;
 
 class Network
 {
-    private $taskName;
-    private $neuronsNames = [];
-    private $neurons = [];
     private $weightsFile;
+    private $neuronsCount;
+    private $neurons = [];
     private $weights = [];
     private $sizeY;
     private $sizeX;
 
-    public function __construct(string $taskName, array $neuronsNames, int $sizeY, int $sizeX, int $limit = null)
+    public function __construct(string $weightsFile, int $neuronsCount, int $sizeY, int $sizeX, int $limit = null)
     {
-        $this->taskName = $taskName;
-        $this->neuronsNames = $neuronsNames;
-        $this->weightsFile = __DIR__ . "/../weights/$taskName.txt";
+        if (!preg_match('/.+\.json$/i', $weightsFile)) {
+            throw new \Exception('Weights file must be in json format');
+        }
+
+        if ($neuronsCount < 1) {
+            throw new \Exception('Incorrect number of neurons');
+        }
+
+        $this->weightsFile = $weightsFile;
+        $this->neuronsCount = (int)$neuronsCount;
         $this->sizeY = $sizeY;
         $this->sizeX = $sizeX;
         $this->weights = $this->getWeights();
 
-        foreach ($this->weights as $neuronName => &$weight) {
-            $this->neurons[$neuronName] = new Neuron($weight, $sizeY, $sizeX, $limit);
+        foreach ($this->weights as $id => &$weight) {
+            $this->neurons[$id] = new Neuron($weight, $sizeY, $sizeX, $limit);
         }
     }
 
@@ -69,8 +75,8 @@ class Network
         }
 
         $result = [];
-        foreach ($this->neuronsNames as $neuronName) {
-            $result["$neuronName"] = $values;
+        for ($z = 0; $z <= $this->neuronsCount - 1; $z++) {
+            $result[$z] = $values;
         }
 
         $resultSerialized = json_encode($result);
@@ -91,16 +97,16 @@ class Network
     public function getResults(): array
     {
         $results = [];
-        foreach ($this->neurons as $taskName => $neuron) {
-            $results[$taskName] = $neuron->getResult();
+        foreach ($this->neurons as $id => $neuron) {
+            $results[$id] = $neuron->getResult();
         }
 
         return $results;
     }
 
-    public function getNeuron(string $taskName): Neuron
+    public function getNeuron(string $id): Neuron
     {
-        return $this->neurons[$taskName];
+        return $this->neurons[$id];
     }
 
     public function getNeurons(): array
