@@ -1,7 +1,7 @@
 ##Simple PHP7 artificial neural network
 
-Simple ANN implementation (single-layer only for now).
-Include test example to recognize images with letters in open-sans font.
+Simple ANN implementation (single-layer only).
+Includes functional tests to recognize images with letters in open-sans font.
 
 ###Usage:
 ```
