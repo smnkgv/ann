@@ -1,5 +1,6 @@
-##An example of a simple PHP 7.1 artificial neural network
+##PHP 7.1 ANN
 
+An example of a simple artificial neural network (only single-layer for now).
 
 ###Usage:
 ```
