@@ -1,11 +1,11 @@
-##Simple PHP7 artificial neural network
+##An example of a simple PHP 7.1 artificial neural network
 
-Simple ANN implementation (single-layer only).
-Includes functional tests to recognize images with letters in open-sans font.
 
 ###Usage:
 ```
-vendor/bin/codecept run unit tests/unit/lib/NetworkTest.php --debug
+$ . docker.sh build
+$ . docker.sh up
+docker# vendor/bin/codecept run unit tests/unit/lib/NetworkTest.php --debug
 ```
 ###Result:
 ```

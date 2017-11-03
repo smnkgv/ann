@@ -113,7 +113,7 @@ class NetworkTest extends \Codeception\Test\Unit
 
     public function testImageRecognitionNetwork()
     {
-//        $this->trainImageRecognitionNetwork(); //this can be disabled right after the first run
+        $this->trainImageRecognitionNetwork(); //this can be disabled right after the first run
 
         $lettersArray = str_split(self::LETTERS);
         $lettersCount = count($lettersArray);
