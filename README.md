@@ -1,14 +1,14 @@
-##PHP 7.1 ANN
+## PHP 7.1 ANN
 
 An example of a simple artificial neural network (only single-layer for now).
 
-###Usage:
+### Usage:
 ```
 $ . docker.sh build
 $ . docker.sh up
 docker# vendor/bin/codecept run unit tests/unit/lib/NetworkTest.php --debug
 ```
-###Result:
+### Result:
 ```
 Unit Tests (1) ----------------------------------------------------------------------------------------------------
 Modules: Asserts, \Helper\Unit
