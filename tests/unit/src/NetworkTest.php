@@ -2,7 +2,7 @@
 
 namespace smnkgv\ann\tests;
 
-use smnkgv\ann\lib\Network;
+use smnkgv\ann\src\Network;
 use Codeception\Util\Debug;
 
 class NetworkTest extends \Codeception\Test\Unit
